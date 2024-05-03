@@ -28,6 +28,7 @@ class MathKeyboard extends StatelessWidget {
   /// Constructs a [MathKeyboard].
   const MathKeyboard({
     Key? key,
+    required this.bgButtonColor,
     required this.controller,
     required this.keyboardBackgroundColor,
     required this.keyboardAccentColor,
@@ -48,6 +49,7 @@ class MathKeyboard extends StatelessWidget {
   final Color keyboardBackgroundColor;
   final Color keyboardAccentColor;
   final Color textColor;
+  final Color bgButtonColor;
 
   /// The controller for editing the math field.
   ///
@@ -122,6 +124,7 @@ class MathKeyboard extends StatelessWidget {
                                   controller: controller,
                                   variables: variables,
                                   textColor: textColor,
+                                  bgButtonColor: bgButtonColor,
                                 ),
                               Padding(
                                 padding: const EdgeInsets.only(
@@ -244,6 +247,7 @@ class _Variables extends StatelessWidget {
   /// Constructs a [_Variables] Widget.
   const _Variables({
     Key? key,
+    required this.bgButtonColor,
     required this.textColor,
     required this.controller,
     required this.variables,
@@ -251,6 +255,7 @@ class _Variables extends StatelessWidget {
 
   ///Customizable variables
   final Color textColor;
+  final Color bgButtonColor;
 
   /// The editing controller for the math field that the variables are connected
   /// to.
@@ -261,9 +266,10 @@ class _Variables extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ///Variables ROW
     return Container(
       height: 54,
-      color: Colors.grey[900],
+      color: bgButtonColor,
       child: AnimatedBuilder(
         animation: controller,
         builder: (context, child) {
@@ -286,6 +292,7 @@ class _Variables extends StatelessWidget {
                   name: variables[index],
                   onTap: () => controller.addLeaf('{${variables[index]}}'),
                   textColor: textColor,
+                  bgButtonColor: bgButtonColor,
                 ),
               );
             },
@@ -557,6 +564,7 @@ class _VariableButton extends StatelessWidget {
   /// Constructs a [_VariableButton] widget.
   const _VariableButton({
     Key? key,
+    required this.bgButtonColor,
     required this.textColor,
     required this.name,
     this.onTap,
@@ -564,6 +572,7 @@ class _VariableButton extends StatelessWidget {
 
   ///Customizable colors
   final Color textColor;
+  final Color bgButtonColor;
 
   /// The variable name.
   final String name;
@@ -575,6 +584,7 @@ class _VariableButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return KeyboardButton(
       onTap: onTap,
+      color: bgButtonColor,
       child: Math.tex(
         name,
         options: MathOptions(

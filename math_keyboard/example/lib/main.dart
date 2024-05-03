@@ -29,7 +29,7 @@ class ExampleApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
       ],
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
       ),
       home: const DemoPage(),
     );

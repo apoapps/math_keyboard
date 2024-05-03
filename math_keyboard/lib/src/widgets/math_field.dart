@@ -332,8 +332,9 @@ class _MathFieldState extends State<MathField> with TickerProviderStateMixin {
                     .white, // Usar el color de texto del tema o blanco por defecto
             keyboardBackgroundColor: theme.colorScheme
                 .background, // Usar el color de fondo definido en el esquema de colores del tema
-            keyboardAccentColor: theme.colorScheme
-                .secondary, // Usar el color secundario del tema para los acentos del teclado
+            keyboardAccentColor: theme.colorScheme.secondary,
+            bgButtonColor: Colors
+                .white, // Usar el color secundario del tema para los acentos del teclado
             type: widget.keyboardType,
             variables: _variables,
             onSubmit: _submit,
