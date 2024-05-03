@@ -269,7 +269,7 @@ class _Variables extends StatelessWidget {
     ///Variables ROW
     return Container(
       height: 54,
-      color: bgButtonColor,
+      // color: bgButtonColor,
       child: AnimatedBuilder(
         animation: controller,
         builder: (context, child) {
@@ -498,7 +498,7 @@ class _BasicButton extends StatelessWidget {
     result = KeyboardButton(
       onTap: onTap,
       color: highlightLevel > 1
-          ? Theme.of(context).colorScheme.secondary
+          ? keyboardAccentColor
           : highlightLevel == 1
               ? keyboardAccentColor
               : null,
@@ -589,7 +589,7 @@ class _VariableButton extends StatelessWidget {
         name,
         options: MathOptions(
           fontSize: 22,
-          color: textColor,
+          //    color: textColor,
         ),
       ),
     );

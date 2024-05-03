@@ -327,14 +327,14 @@ class _MathFieldState extends State<MathField> with TickerProviderStateMixin {
           locale: Localizations.localeOf(this.context),
           child: MathKeyboard(
             controller: _controller,
-            textColor: theme.textTheme.bodySmall?.color ??
-                Colors
-                    .white, // Usar el color de texto del tema o blanco por defecto
+            textColor: theme.textTheme.bodyLarge?.color ??
+                Colors.white, // Texto principal más legible
             keyboardBackgroundColor: theme.colorScheme
-                .background, // Usar el color de fondo definido en el esquema de colores del tema
-            keyboardAccentColor: theme.colorScheme.secondary,
-            bgButtonColor: Colors
-                .white, // Usar el color secundario del tema para los acentos del teclado
+                .background, // Usar 'surface' para fondos de componentes
+            keyboardAccentColor:
+                theme.colorScheme.background, // Color secundario para acentos
+            bgButtonColor: theme.colorScheme
+                .background, // Color sobre 'surface' para contraste adecuado
             type: widget.keyboardType,
             variables: _variables,
             onSubmit: _submit,
