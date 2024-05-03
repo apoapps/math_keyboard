@@ -327,6 +327,9 @@ class _MathFieldState extends State<MathField> with TickerProviderStateMixin {
           locale: Localizations.localeOf(this.context),
           child: MathKeyboard(
             controller: _controller,
+            textColor: Colors.white,
+            keyboardBackgroundColor: Colors.black,
+            keyboardAccentColor: Colors.grey.withOpacity(0.9),
             type: widget.keyboardType,
             variables: _variables,
             onSubmit: _submit,

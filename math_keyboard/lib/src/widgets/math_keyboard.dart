@@ -29,6 +29,9 @@ class MathKeyboard extends StatelessWidget {
   const MathKeyboard({
     Key? key,
     required this.controller,
+    required this.keyboardBackgroundColor,
+    required this.keyboardAccentColor,
+    required this.textColor,
     this.type = MathKeyboardType.expression,
     this.variables = const [],
     this.onSubmit,
@@ -40,6 +43,11 @@ class MathKeyboard extends StatelessWidget {
       right: 4,
     ),
   }) : super(key: key);
+
+  ///CUSTOM COLORS ON MATH KEYBOARD
+  final Color keyboardBackgroundColor;
+  final Color keyboardAccentColor;
+  final Color textColor;
 
   /// The controller for editing the math field.
   ///
@@ -93,7 +101,7 @@ class MathKeyboard extends StatelessWidget {
             child: Material(
               type: MaterialType.transparency,
               child: ColoredBox(
-                color: Colors.black,
+                color: keyboardBackgroundColor,
                 child: SafeArea(
                   top: false,
                   child: _KeyboardBody(
@@ -113,6 +121,7 @@ class MathKeyboard extends StatelessWidget {
                                 _Variables(
                                   controller: controller,
                                   variables: variables,
+                                  textColor: textColor,
                                 ),
                               Padding(
                                 padding: const EdgeInsets.only(
@@ -127,6 +136,8 @@ class MathKeyboard extends StatelessWidget {
                                       ? null
                                       : functionKeyboard,
                                   onSubmit: onSubmit,
+                                  keyboardAccentColor: keyboardAccentColor,
+                                  textColor: textColor,
                                 ),
                               ),
                             ],
@@ -233,9 +244,13 @@ class _Variables extends StatelessWidget {
   /// Constructs a [_Variables] Widget.
   const _Variables({
     Key? key,
+    required this.textColor,
     required this.controller,
     required this.variables,
   }) : super(key: key);
+
+  ///Customizable variables
+  final Color textColor;
 
   /// The editing controller for the math field that the variables are connected
   /// to.
@@ -260,7 +275,7 @@ class _Variables extends StatelessWidget {
                 child: Container(
                   height: 24,
                   width: 1,
-                  color: Colors.white,
+                  color: textColor,
                 ),
               );
             },
@@ -270,6 +285,7 @@ class _Variables extends StatelessWidget {
                 child: _VariableButton(
                   name: variables[index],
                   onTap: () => controller.addLeaf('{${variables[index]}}'),
+                  textColor: textColor,
                 ),
               );
             },
@@ -285,11 +301,17 @@ class _Buttons extends StatelessWidget {
   /// Constructs a [_Buttons] Widget.
   const _Buttons({
     Key? key,
+    required this.keyboardAccentColor,
+    required this.textColor,
     required this.controller,
     this.page1,
     this.page2,
     this.onSubmit,
   }) : super(key: key);
+
+  ///Customizable variables
+  final Color textColor;
+  final Color keyboardAccentColor;
 
   /// The editing controller for the math field that the variables are connected
   /// to.
@@ -335,6 +357,8 @@ class _Buttons extends StatelessWidget {
                                 : () => controller.addLeaf(config.value),
                             asTex: config.asTex,
                             highlightLevel: config.highlighted ? 1 : 0,
+                            textColor: textColor,
+                            keyboardAccentColor: keyboardAccentColor,
                           )
                         else if (config is DeleteButtonConfig)
                           _NavigationButton(
@@ -342,6 +366,8 @@ class _Buttons extends StatelessWidget {
                             icon: Icons.backspace,
                             iconSize: 22,
                             onTap: () => controller.goBack(deleteMode: true),
+                            textColor: textColor,
+                            keyboardAccentColor: keyboardAccentColor,
                           )
                         else if (config is PageButtonConfig)
                           _BasicButton(
@@ -352,18 +378,24 @@ class _Buttons extends StatelessWidget {
                             label: controller.secondPage ? '123' : null,
                             onTap: controller.togglePage,
                             highlightLevel: 1,
+                            textColor: textColor,
+                            keyboardAccentColor: keyboardAccentColor,
                           )
                         else if (config is PreviousButtonConfig)
                           _NavigationButton(
                             flex: config.flex,
                             icon: Icons.chevron_left_rounded,
                             onTap: controller.goBack,
+                            textColor: textColor,
+                            keyboardAccentColor: keyboardAccentColor,
                           )
                         else if (config is NextButtonConfig)
                           _NavigationButton(
                             flex: config.flex,
                             icon: Icons.chevron_right_rounded,
                             onTap: controller.goNext,
+                            textColor: textColor,
+                            keyboardAccentColor: keyboardAccentColor,
                           )
                         else if (config is SubmitButtonConfig)
                           _BasicButton(
@@ -371,6 +403,8 @@ class _Buttons extends StatelessWidget {
                             icon: Icons.keyboard_return,
                             onTap: onSubmit,
                             highlightLevel: 2,
+                            textColor: textColor,
+                            keyboardAccentColor: keyboardAccentColor,
                           ),
                     ],
                   ),
@@ -388,6 +422,8 @@ class _BasicButton extends StatelessWidget {
   /// Constructs a [_BasicButton].
   const _BasicButton({
     Key? key,
+    required this.textColor,
+    required this.keyboardAccentColor,
     required this.flex,
     this.label,
     this.icon,
@@ -396,6 +432,10 @@ class _BasicButton extends StatelessWidget {
     this.highlightLevel = 0,
   })  : assert(label != null || icon != null),
         super(key: key);
+
+  ///Customizable colors
+  final Color keyboardAccentColor;
+  final Color textColor;
 
   /// The flexible flex value.
   final int? flex;
@@ -421,14 +461,14 @@ class _BasicButton extends StatelessWidget {
     if (label == null) {
       result = Icon(
         icon,
-        color: Colors.white,
+        color: textColor,
       );
     } else if (asTex) {
       result = Math.tex(
         label!,
         options: MathOptions(
           fontSize: 22,
-          color: Colors.white,
+          color: textColor,
         ),
       );
     } else {
@@ -441,9 +481,9 @@ class _BasicButton extends StatelessWidget {
 
       result = Text(
         symbol!,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 22,
-          color: Colors.white,
+          color: textColor,
         ),
       );
     }
@@ -453,7 +493,7 @@ class _BasicButton extends StatelessWidget {
       color: highlightLevel > 1
           ? Theme.of(context).colorScheme.secondary
           : highlightLevel == 1
-              ? Colors.grey[900]
+              ? keyboardAccentColor
               : null,
       child: result,
     );
@@ -470,11 +510,17 @@ class _NavigationButton extends StatelessWidget {
   /// Constructs a [_NavigationButton].
   const _NavigationButton({
     Key? key,
+    required this.keyboardAccentColor,
+    required this.textColor,
     required this.flex,
     this.icon,
     this.iconSize = 36,
     this.onTap,
   }) : super(key: key);
+
+  ///Customizable colors
+  final Color keyboardAccentColor;
+  final Color textColor;
 
   /// The flexible flex value.
   final int? flex;
@@ -495,10 +541,10 @@ class _NavigationButton extends StatelessWidget {
       child: KeyboardButton(
         onTap: onTap,
         onHold: onTap,
-        color: Colors.grey[900],
+        color: keyboardAccentColor, //todo: make this a customizable color
         child: Icon(
           icon,
-          color: Colors.white,
+          color: textColor, //todo: make this a customizable color
           size: iconSize,
         ),
       ),
@@ -511,9 +557,13 @@ class _VariableButton extends StatelessWidget {
   /// Constructs a [_VariableButton] widget.
   const _VariableButton({
     Key? key,
+    required this.textColor,
     required this.name,
     this.onTap,
   }) : super(key: key);
+
+  ///Customizable colors
+  final Color textColor;
 
   /// The variable name.
   final String name;
@@ -529,7 +579,7 @@ class _VariableButton extends StatelessWidget {
         name,
         options: MathOptions(
           fontSize: 22,
-          color: Colors.white,
+          color: textColor,
         ),
       ),
     );
