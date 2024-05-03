@@ -1,9 +1,9 @@
 import 'dart:math';
 
+import 'package:apoapps_math_keyboard/src/foundation/math2tex.dart';
+import 'package:apoapps_math_keyboard/src/foundation/tex2math.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:math_expressions/math_expressions.dart';
-import 'package:math_keyboard/src/foundation/math2tex.dart';
-import 'package:math_keyboard/src/foundation/tex2math.dart';
 
 // todo: refactor the conversion to enable sensible tests.
 void main() {

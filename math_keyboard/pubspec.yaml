@@ -1,9 +1,9 @@
-name: math_keyboard
+name: apoapps_math_keyboard
 description: >-2
   Math expression editing using an on-screen software keyboard or physical keyboard input in a
-  typeset input field in Flutter.
-version: 0.2.1
-homepage: https://github.com/simpleclub/math_keyboard/tree/main/math_keyboard
+  typeset input field in Flutter, updated to be customizable.
+version: 0.3.0
+homepage: https://github.com/apoapps/math_keyboard
 
 environment:
   sdk: '>=2.12.0 <4.0.0'

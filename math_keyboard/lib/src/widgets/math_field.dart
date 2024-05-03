@@ -1,14 +1,14 @@
+import 'package:apoapps_math_keyboard/src/foundation/keyboard_button.dart';
+import 'package:apoapps_math_keyboard/src/foundation/math2tex.dart';
+import 'package:apoapps_math_keyboard/src/foundation/node.dart';
+import 'package:apoapps_math_keyboard/src/widgets/decimal_separator.dart';
+import 'package:apoapps_math_keyboard/src/widgets/math_keyboard.dart';
+import 'package:apoapps_math_keyboard/src/widgets/view_insets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:math_expressions/math_expressions.dart';
-import 'package:math_keyboard/src/foundation/keyboard_button.dart';
-import 'package:math_keyboard/src/foundation/math2tex.dart';
-import 'package:math_keyboard/src/foundation/node.dart';
-import 'package:math_keyboard/src/widgets/decimal_separator.dart';
-import 'package:math_keyboard/src/widgets/math_keyboard.dart';
-import 'package:math_keyboard/src/widgets/view_insets.dart';
 
 /// Widget that is like a [TextField] for math expressions.
 ///
@@ -320,21 +320,23 @@ class _MathFieldState extends State<MathField> with TickerProviderStateMixin {
     _overlayEntry?.remove();
     _overlayEntry = OverlayEntry(
       builder: (context) {
+        // Obtener el tema actual del contexto
+        var theme = Theme.of(context);
         return Localizations.override(
-          // Make sure to inject the same locale the math field uses in order
-          // to match the decimal separators.
           context: this.context,
           locale: Localizations.localeOf(this.context),
           child: MathKeyboard(
             controller: _controller,
-            textColor: Colors.white,
-            keyboardBackgroundColor: Colors.black,
-            keyboardAccentColor: Colors.grey.withOpacity(0.9),
+            textColor: theme.textTheme.bodySmall?.color ??
+                Colors
+                    .white, // Usar el color de texto del tema o blanco por defecto
+            keyboardBackgroundColor: theme.colorScheme
+                .background, // Usar el color de fondo definido en el esquema de colores del tema
+            keyboardAccentColor: theme.colorScheme
+                .secondary, // Usar el color secundario del tema para los acentos del teclado
             type: widget.keyboardType,
             variables: _variables,
             onSubmit: _submit,
-            // Note that we need to pass the insets state like this because the
-            // overlay context does not have the ancestor state.
             insetsState: MathKeyboardViewInsetsState.of(this.context),
             slideAnimation: _keyboardSlideController,
           ),
