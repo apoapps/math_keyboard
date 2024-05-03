@@ -1,4 +1,8 @@
 
+## 0.3.2
+
+* Fixed all keyboard colors based on theme
+
 ## 0.3.1
 
 * Added variable keyboard color

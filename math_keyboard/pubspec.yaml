@@ -2,7 +2,7 @@ name: apoapps_math_keyboard
 description: >-2
   Math expression editing using an on-screen software keyboard or physical keyboard input in a
   typeset input field in Flutter, updated to be customizable.
-version: 0.3.1
+version: 0.3.2
 homepage: https://github.com/apoapps/math_keyboard
 
 environment:
