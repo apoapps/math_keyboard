@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:apoapps_math_keyboard/math_keyboard.dart';
+import 'package:apoapps_math_keyboard/apoapps_math_keyboard.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:math_expressions/math_expressions.dart';
 

@@ -1,3 +1,8 @@
+
+## 0.2.1
+
+* Added variable keyboard color
+
 ## 0.2.1
 
 * Added Android support to the demo project.

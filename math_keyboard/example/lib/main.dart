@@ -1,4 +1,4 @@
-import 'package:apoapps_math_keyboard/math_keyboard.dart';
+import 'package:apoapps_math_keyboard/apoapps_math_keyboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
