@@ -1,5 +1,5 @@
 
-## 3.0.0
+## 0.3.1
 
 * Added variable keyboard color
 
