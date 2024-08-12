@@ -266,9 +266,11 @@ class _Variables extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     ///Variables ROW
     return Container(
-      height: 54,
+      height: 45,
       // color: bgButtonColor,
       child: AnimatedBuilder(
         animation: controller,
@@ -281,7 +283,7 @@ class _Variables extends StatelessWidget {
                 child: Container(
                   height: 24,
                   width: 1,
-                  color: textColor,
+                  color: theme.textTheme.displayLarge!.color,
                 ),
               );
             },
@@ -291,7 +293,7 @@ class _Variables extends StatelessWidget {
                 child: _VariableButton(
                   name: variables[index],
                   onTap: () => controller.addLeaf('{${variables[index]}}'),
-                  textColor: textColor,
+                  textColor: theme.textTheme.displayLarge!.color!,
                   bgButtonColor: bgButtonColor,
                 ),
               );
